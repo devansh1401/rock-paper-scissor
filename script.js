@@ -1,7 +1,7 @@
 function getComputerChoice() {
-    var a = "Rock";
-    var b = "Paper";
-    var c = "Scissor";
+    var a = "rock";
+    var b = "paper";
+    var c = "scissor";
   
     const stringsArray = [a, b, c];
     const randomIndex = Math.floor(Math.random() * stringsArray.length);
@@ -48,6 +48,7 @@ function Rounds(playerSelection , computerSelection){
         console.log(loseMessage);
         return loseMessage;
       }
+      return "Unexpected error. Please try again.";
 }
 
 
