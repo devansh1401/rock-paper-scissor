@@ -7,7 +7,7 @@ function getComputerChoice() {
     const randomIndex = Math.floor(Math.random() * stringsArray.length);
     const randomString = stringsArray[randomIndex];
   
-    console.log(`this is computer choice :${randomString}`);
+    // console.log(`this is computer choice :${randomString}`);
     return randomString;
   }
 
@@ -26,7 +26,7 @@ function Rounds(playerSelection , computerSelection){
     // checking for a tie
     if(playerSelection === computerSelection){
         var str = "It's a tie! Try again.";
-        console.log(str);
+        // console.log(str);
         return str;
     }
 
@@ -37,7 +37,7 @@ function Rounds(playerSelection , computerSelection){
         (playerSelection === "scissor" && computerSelection === "paper")
       ) {
         var winMessage = `You Win! ${playerSelection} beats ${computerSelection}.`;
-        console.log(winMessage);
+        // console.log(winMessage);
         return winMessage;
       } else if (
         (playerSelection === "scissor" && computerSelection === "rock") ||
@@ -45,15 +45,46 @@ function Rounds(playerSelection , computerSelection){
         (playerSelection === "paper" && computerSelection === "scissor")
       ) {
         var loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}.`;
-        console.log(loseMessage);
+       // console.log(loseMessage);
         return loseMessage;
       }
       return "Unexpected error. Please try again.";
 }
 
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
 
-const playerSelection = "roCk";
-console.log(`this is player choice :${playerSelection}`);
-const computerSelection = getComputerChoice();
-console.log(Rounds(playerSelection, computerSelection));
+    for (let round = 1; round <= 5; round++) {
+        const playerSelection = prompt("Enter your choice (rock, paper, or scissor):");
+        const computerSelection = getComputerChoice();
+
+        console.log(`Round ${round}:`);
+        console.log(`Player choice: ${playerSelection}`);
+        console.log(`Computer choice: ${computerSelection}`);
+
+        const result = Rounds(playerSelection, computerSelection);
+
+        if (result.includes("Win")) {
+            playerScore++;
+        } else if (result.includes("Lose")) {
+            computerScore++;
+        }
+
+        console.log(result);
+        console.log(`Score - Player: ${playerScore}, Computer: ${computerScore}`);
+        console.log("------------------");
+    }
+
+    if (playerScore > computerScore) {
+        console.log("You win the game!");
+    } else if (playerScore < computerScore) {
+        console.log("Computer wins the game!");
+    } else {
+        console.log("It's a tie! The game is drawn.");
+    }
+}
+
+game();
+
 
